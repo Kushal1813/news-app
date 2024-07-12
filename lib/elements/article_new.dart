@@ -33,6 +33,8 @@ class Article extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16), color: Colors.white),
         child: SizedBox(
           height: 96,
           child: Row(
@@ -40,20 +42,24 @@ class Article extends StatelessWidget {
               Container(
                   height: 96,
                   width: 96,
-                  child: Image.network(thumbnail, loadingBuilder:
-                      (BuildContext context, Widget body,
-                          ImageChunkEvent? loadingProgress) {
-                    if (loadingProgress == null) {
-                      return body;
-                    }
-                    return Center(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.network(thumbnail, loadingBuilder:
+                        (BuildContext context, Widget body,
+                            ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) {
+                        return body;
+                      }
+                      return Center(
                         child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                          : null,
-                    ));
-                  })),
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    }),
+                  )),
               const SizedBox(
                 width: 16,
               ),
@@ -65,7 +71,7 @@ class Article extends StatelessWidget {
                     height: 20,
                     child: Text(
                       title,
-                      maxLines: 2,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
@@ -76,7 +82,7 @@ class Article extends StatelessWidget {
                     height: 20,
                     child: Text(
                       subtitle,
-                      maxLines: 2,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontSize: 12.0,
@@ -92,7 +98,7 @@ class Article extends StatelessWidget {
                           child: Text(
                             author,
                             style: const TextStyle(
-                              fontSize: 12.0,
+                              fontSize: 10.0,
                               color: Colors.black87,
                             ),
                           ),
@@ -107,7 +113,7 @@ class Article extends StatelessWidget {
                           child: Text(
                             '$publishDate',
                             style: const TextStyle(
-                              fontSize: 12.0,
+                              fontSize: 10.0,
                               color: Colors.black54,
                             ),
                           ),

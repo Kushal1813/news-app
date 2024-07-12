@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Flutter News App'),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[350],
       body: _isLoading
           ? Shimmer.fromColors(
               baseColor: Colors.grey.shade400,
@@ -103,6 +103,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   }))
           : ListView.separated(
+              padding: const EdgeInsets.all(16),
+              separatorBuilder: (BuildContext context, int index) =>
+                  const SizedBox(height: 16),
               itemBuilder: (BuildContext context, int index) {
                 final article = news[index];
                 final title = article['title'];
@@ -117,8 +120,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     author: author,
                     publishDate: publishDate);
               },
-              separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(),
               itemCount: news.length),
     );
   }
