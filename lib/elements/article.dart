@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+/*import "package:flutter/material.dart";
 import "package:news_app/screen/description_screen.dart";
 
 class _ArticleDescription extends StatelessWidget {
@@ -109,4 +109,4 @@ class CustomListItem extends StatelessWidget {
       ),
     );
   }
-}
+}*/

@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
 import 'package:news_app/elements/article.dart';
+import 'package:news_app/elements/article_new.dart';
 import 'dart:convert';
 import 'package:shimmer/shimmer.dart';
 
@@ -108,21 +109,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 final description = article['description'];
                 final author = article['source']['name'];
                 final publishDate = article['publishedAt'];
-                final thumbnail = Image.network(article['urlToImage'],
-                    loadingBuilder: (BuildContext context, Widget body,
-                        ImageChunkEvent? loadingProgress) {
-                  if (loadingProgress == null) {
-                    return body;
-                  }
-                  return Center(
-                      child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes!
-                        : null,
-                  ));
-                });
-                return CustomListItem(
+                final thumbnail = article['urlToImage'];
+                return Article(
                     thumbnail: thumbnail,
                     title: title,
                     subtitle: description,
